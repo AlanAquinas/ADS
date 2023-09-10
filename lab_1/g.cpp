@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -12,22 +11,21 @@ bool isPrime(int num){
     return true;
 }
 
-int findNthSuperprime(int n) {
-    vector<int> superprimes;
-    int candidate = 2;
-
-    while (superprimes.size() < n) {
-        if (isPrime(candidate)) {
-            superprimes.push_back(candidate);
+int findNthTermPrime(int num){
+    int counter = 0;
+    int prime;
+    for (int i = 2; num > counter; i++)
+    {
+        if(isPrime(i)){
+            counter++;
+            prime = i;
         }
-        candidate++;
     }
-
-    return superprimes.back(); // Return the nth superprime
+    return prime;
 }
 
 int main(){
     int n;
     cin >> n;
-    cout << findNthSuperprime(n);
+    cout << findNthTermPrime(n);
 }

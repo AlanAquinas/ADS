@@ -1,15 +1,8 @@
 {
     "files.associations": {
-        "deque": "cpp",
         "iostream": "cpp",
         "vector": "cpp",
-        "array": "cpp",
-        "format": "cpp",
-        "initializer_list": "cpp",
-        "ranges": "cpp",
-        "span": "cpp",
-        "xstring": "cpp",
-        "xutility": "cpp"
-    },
-    "C_Cpp.errorSquiggles": "disabled"
+        "deque": "cpp",
+        "xstring": "cpp"
+    }
 }
