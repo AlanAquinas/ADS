@@ -1,49 +1,64 @@
 #include <iostream>
-#include <cstdlib>
 
-struct Node 
-{
-    int data;
-    Node* next;
-    Node(int value) : data(value), next(nullptr) {}
+using namespace std;
+
+struct Node {
+    int value;
+    Node *next;
+
+    Node(int newValue){
+        this -> value = newValue;
+        this -> next = NULL;
+    }
 };
 
-int findNearest(Node* head, int k) {
-    int nearest = head->data;
-    int minDiff = abs(k - head->data);
-    
-    Node* current = head->next;
-    
-    while (current) {
-        int diff = abs(k - current->data);
-        if (diff < minDiff) {
-            minDiff = diff;
-            nearest = current->data;
-        }
-        current = current->next;
-    }
-    
-    return nearest;
+void print(Node* head) {
+  Node* cur = head;
+  while (cur != NULL) {
+    cout << cur->value << " ";
+    cur = cur->next;
+  }
+  cout << endl;
 }
 
-int main() {
-    // Create a linked list
-    Node* head = new Node(10);
-    head->next = new Node(5);
-    head->next->next = new Node(20);
-    head->next->next->next = new Node(17);
+void nearestNumber(Node* head, int nearest){
+    Node* cur = head;
+    int result = 0;
+    int index = 0;
 
-    int k = 16; // The integer to find the nearest to
+    int min = abs(nearest - head->value);
+    while(cur != NULL){
+        if(min > abs(nearest - cur->value)){
+            min = abs(nearest - cur->value);
+            result = index;
+        }
+        cur = cur->next;
+        index++;
+    }
+    cout << result << endl;
+}
 
-    int nearest = findNearest(head, k);
+int main(){
+    int n; cin >> n;
+    Node *head;
+    Node *a;
+    Node *cur;
 
-    std::cout << "The nearest integer to " << k << " is: " << nearest << std::endl;
+    for (int i = 0; i < n; i++)
+    {
+        int value; cin >> value;
+        if (i==0)
+        {
+            head = new Node(value);
+            cur = head;
+        } else {
+            a = new Node(value);
+            cur -> next = a;
+            cur = cur -> next;
+        }
+    }
 
-    // Clean up memory (not shown: deallocate memory for nodes)
-    delete head->next->next->next;
-    delete head->next->next;
-    delete head->next;
-    delete head;
-
-    return 0;
+    int nearest; cin >> nearest;
+    
+    nearestNumber(head, nearest);
 }
